@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker https://www.codeandweb.com/texturepacker -->
+<!-- $TexturePacker:SmartUpdate:819b82f835c222ca07ad090b34c0664c:3bdcdc5355836620544765fcb97913c9:9ae7e0887b825ab739ffb7dc6d85b5e1$ -->
+<!--Format:
+n  => name of the sprite
+x  => sprite x pos in texture
+y  => sprite y pos in texture
+w  => sprite width (may be trimmed)
+h  => sprite height (may be trimmed)
+pX => x pos of the pivot point (relative to sprite width)
+pY => y pos of the pivot point (relative to sprite height)
+oX => sprite's x-corner offset (only available if trimmed)
+oY => sprite's y-corner offset (only available if trimmed)
+oW => sprite's original width (only available if trimmed)
+oH => sprite's original height (only available if trimmed)
+r => 'y' only set if sprite is rotated
+with polygon mode enabled:
+vertices   => points in sprite coordinate system (x0,y0,x1,y1,x2,y2, ...)
+verticesUV => points in sheet coordinate system (x0,y0,x1,y1,x2,y2, ...)
+triangles  => sprite triangulation, 3 vertex indices per triangle
+-->
+<TextureAtlas imagePath="pacman.png" width="170" height="102">
+    <sprite n="pac1.png" x="1" y="67" w="32" h="32" pX="0.5" pY="0.5"/>
+    <sprite n="pac2.png" x="85" y="1" w="32" h="32" pX="0.5" pY="0.5"/>
+    <sprite n="pac3.png" x="69" y="69" w="32" h="32" pX="0.5" pY="0.5"/>
+    <sprite n="pac4.png" x="119" y="1" w="32" h="32" pX="0.5" pY="0.5"/>
+    <sprite n="pac5.png" x="103" y="35" w="32" h="32" pX="0.5" pY="0.5"/>
+    <sprite n="pac6.png" x="103" y="69" w="32" h="32" pX="0.5" pY="0.5"/>
+    <sprite n="pac7.png" x="137" y="35" w="32" h="32" pX="0.5" pY="0.5"/>
+    <sprite n="pac8.png" x="137" y="69" w="32" h="32" pX="0.5" pY="0.5"/>
+    <sprite n="pac9.png" x="69" y="35" w="32" h="32" pX="0.5" pY="0.5"/>
+    <sprite n="pac10.png" x="35" y="67" w="32" h="32" pX="0.5" pY="0.5"/>
+    <sprite n="pac11.png" x="51" y="1" w="32" h="32" pX="0.5" pY="0.5"/>
+    <sprite n="pac12.png" x="69" y="35" w="32" h="32" pX="0.5" pY="0.5"/>
+    <sprite n="pacman_sprites.png" x="1" y="1" w="48" h="64" pX="0.5" pY="0.5"/>
+</TextureAtlas>
