@@ -17,7 +17,7 @@ int main(int argc, char **argv)
 {
     cgf::Game game(5,30);
 
-	game.init("Framework com estados, sprites e tiling",1280,720,false);
+	game.init("Pacman",900,720,false);
 
     game.changeState(PlayState::instance());
 

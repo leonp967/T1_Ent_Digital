@@ -3,6 +3,7 @@
  *  Normal "play" state
  *
  *  Created by Marcelo Cohen on 08/13.
+ *  Edited by Leonardo Porto on 10/18.
  *  Copyright 2013 PUCRS. All rights reserved.
  *
  */
@@ -50,13 +51,14 @@ class PlayState : public cgf::GameState
 
     int x, y;
     int dirx, diry;
+    int pontos;
 
     cgf::Sprite player;
 
     sf::RenderWindow* screen;
     cgf::InputManager* im;
 
-    tmx::MapLoader* map;
+    tmx::MapLoader* mapa;
 
     sf::Font font;
     sf::Text text;
@@ -69,6 +71,10 @@ class PlayState : public cgf::GameState
 
     // get a cell GID from the map (x and y in world coords)
     sf::Uint16 getCellFromMap(uint8_t layernum, float x, float y);
+
+    void addPoint();
+    void checkCollisionPoint();
+    void initPoints();
 };
 
 #endif

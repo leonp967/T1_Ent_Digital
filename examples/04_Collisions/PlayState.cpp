@@ -3,6 +3,7 @@
  *  Normal "play" state
  *
  *  Created by Marcelo Cohen on 08/13.
+ *  Edited by Leonardo Porto on 10/18.
  *  Copyright 2013 PUCRS. All rights reserved.
  *
  */
@@ -12,39 +13,47 @@
 #include "Game.h"
 #include "PlayState.h"
 #include "InputManager.h"
+#include <time.h>
 
 PlayState PlayState::m_PlayState;
 
 using namespace std;
 
+vector<cgf::Sprite> bolinhas;
+
 void PlayState::init()
 {
-    if (!font.loadFromFile("data/fonts/arial.ttf")) {
-        cout << "Cannot load arial.ttf font!" << endl;
+    if (!font.loadFromFile("data/fonts/emulogic.ttf")) {
+        cout << "Cannot load emulogic.ttf font!" << endl;
         exit(1);
     }
+    pontos = 0;
     text.setFont(font);
-    text.setString(L"Testing text output in SFML");
-    text.setCharacterSize(32); // in pixels
-    text.setFillColor(sf::Color::Yellow);
-    text.setStyle(sf::Text::Bold | sf::Text::Underlined);
+    ostringstream stringStream;
+    stringStream << "Pontos: " << pontos;
+    text.setString(stringStream.str());
+    text.setCharacterSize(20);
+    text.setFillColor(sf::Color::White);
+    text.setStyle(sf::Text::Bold);
 
-    map = new tmx::MapLoader("data/maps/pacman");       // all maps/tiles will be read from data/maps
-    // map->AddSearchPath("data/maps/tilesets"); // e.g.: adding more search paths for tilesets
-    map->Load("mapa_pacman.tmx");
+    mapa = new tmx::MapLoader("data/maps/pacman");       // all maps/tiles will be read from data/maps
+    // mapa->AddSearchPath("data/maps/tilesets"); // e.g.: adding more search paths for tilesets
+    mapa->Load("mapa_pacman.tmx");
 
     walkStates[0] = "andar-direita";
     walkStates[1] = "andar-esquerda";
     walkStates[2] = "andar-cima";
     walkStates[3] = "andar-baixo";
     currentDir = RIGHT;
-    player.load("data/img/pacman/pacman.png",32,32,0,0,0,0,12,1,12);
+    player.load("data/img/pacman/pacman_32x32.png",32,32,0,0,0,0,12,1,12);
     player.setPosition(32,64);
-    player.loadAnimation("data/img/pacman/pacman_bkcp.xml");
+    player.loadAnimation("data/img/pacman/pacman_anim.xml");
     player.setAnimation(walkStates[currentDir]);
     player.setAnimRate(15);
-    player.setScale(1,1);
+    player.setScale(0.7,0.7);
     player.play();
+
+    initPoints();
 
     dirx = 0; // sprite dir: right (1), left (-1)
     diry = 0; // down (1), up (-1)
@@ -68,7 +77,7 @@ void PlayState::init()
 
 void PlayState::cleanup()
 {
-    delete map;
+    delete mapa;
     cout << "PlayState: Clean" << endl;
 }
 
@@ -143,14 +152,15 @@ void PlayState::handleEvents(cgf::Game* game)
         player.play();
     }
 
-    player.setXspeed(200*dirx);
-    player.setYspeed(200*diry);
+    player.setXspeed(150*dirx);
+    player.setYspeed(150*diry);
 }
 
 void PlayState::update(cgf::Game* game)
 {
     screen = game->getScreen();
     checkCollision(1, game, &player);
+    checkCollisionPoint();
 //    player.update(game->getUpdateInterval());
     centerMapOnPlayer();
 }
@@ -158,16 +168,40 @@ void PlayState::update(cgf::Game* game)
 void PlayState::draw(cgf::Game* game)
 {
     screen = game->getScreen();
-    map->Draw(*screen);          // draw all layers
-//    map->Draw(*screen, 1);     // draw only the second layer
+    mapa->Draw(*screen);
     screen->draw(player);
+    for(cgf::Sprite ponto : bolinhas)
+        screen->draw(ponto);
     screen->draw(text);
+}
+
+void PlayState::initPoints(){
+    srand(time(NULL));
+    int n = rand() % 200 + 50;
+    int baseX = 32;
+    int baseY = 32;
+    int limiteX = (mapa->GetMapSize().x-48)/32;
+    int limiteY = (mapa->GetMapSize().y-48)/32;
+    for(int i = 0; i < n; i++){
+        cgf::Sprite ponto = cgf::Sprite();
+        ponto.load("data/img/pacman/sprites/ponto.png");
+        int posX = (baseX) + ((rand() % limiteX + 2)*30);
+        int posY = (baseY) + ((rand() % limiteY + 2)*30);
+        printf("antesWhile\n");
+        while(getCellFromMap(1, posX, posY) || getCellFromMap(2, posX, posY)){
+            posX = (baseX) + ((rand() % limiteX + 2)*30);
+            posY = (baseY) + ((rand() % limiteY + 2)*30);
+        }
+        printf("depoisWhile\n");
+        ponto.setPosition(posX, posY);
+        bolinhas.push_back(ponto);
+    }
 }
 
 void PlayState::centerMapOnPlayer()
 {
     sf::View view = screen->getView();
-    sf::Vector2u mapsize = map->GetMapSize();
+    sf::Vector2u mapsize = mapa->GetMapSize();
     sf::Vector2f viewsize = view.getSize();
     viewsize.x /= 2;
     viewsize.y /= 2;
@@ -188,8 +222,23 @@ void PlayState::centerMapOnPlayer()
         panY = mapsize.y - viewsize.y;
 
     sf::Vector2f center(panX,panY);
+    text.setPosition(panX + 150, panY-(view.getSize().y/2));
     view.setCenter(center);
     screen->setView(view);
+}
+
+void PlayState::checkCollisionPoint(){
+    int i;
+    bool colisao = false;
+    for(i = 0; i < bolinhas.size(); i++){
+        if(bolinhas[i].bboxCollision(player)){
+            colisao = true;
+            addPoint();
+            break;
+        }
+    }
+    if(bolinhas.size() > 0 && colisao)
+        bolinhas.erase(bolinhas.begin() + i);
 }
 
 bool PlayState::checkCollision(uint8_t layer, cgf::Game* game, cgf::Sprite* obj)
@@ -198,9 +247,9 @@ bool PlayState::checkCollision(uint8_t layer, cgf::Game* game, cgf::Sprite* obj)
     bool bump = false;
 
     // Get the limits of the map
-    sf::Vector2u mapsize = map->GetMapSize();
+    sf::Vector2u mapsize = mapa->GetMapSize();
     // Get the width and height of a single tile
-    sf::Vector2u tilesize = map->GetMapTileSize();
+    sf::Vector2u tilesize = mapa->GetMapTileSize();
 
     mapsize.x /= tilesize.x;
     mapsize.y /= tilesize.y;
@@ -358,20 +407,26 @@ bool PlayState::checkCollision(uint8_t layer, cgf::Game* game, cgf::Sprite* obj)
         obj->setPosition(mapsize.x*tilesize.x - objsize.x - 1,py);
 
     if(py < 0)
-        obj->setPosition(px,0);
+       obj->setPosition(px,0);
     else if(py + objsize.y >= mapsize.y * tilesize.y)
         obj->setPosition(px, mapsize.y*tilesize.y - objsize.y - 1);
 
     return bump;
 }
 
+void PlayState::addPoint(){
+    ostringstream stringStream;
+    stringStream << "Pontos: " << ++pontos;
+    text.setString(stringStream.str());
+}
+
 // Get a cell GID from the map (x and y in global coords)
 sf::Uint16 PlayState::getCellFromMap(uint8_t layernum, float x, float y)
 {
-    auto& layers = map->GetLayers();
+    auto& layers = mapa->GetLayers();
     tmx::MapLayer& layer = layers[layernum];
-    sf::Vector2u mapsize = map->GetMapSize();
-    sf::Vector2u tilesize = map->GetMapTileSize();
+    sf::Vector2u mapsize = mapa->GetMapSize();
+    sf::Vector2u tilesize = mapa->GetMapTileSize();
     mapsize.x /= tilesize.x;
     mapsize.y /= tilesize.y;
     int col = floor(x / tilesize.x);

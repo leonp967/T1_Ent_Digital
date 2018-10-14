@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<animation name="pacman">
-    <sequence name="andar-direita" start="0" end="2" loop="true"/>
-	<sequence name="andar-esquerda" start="3" end="5" loop="true"/>
-	<sequence name="andar-cima" start="6" end="8" loop="true"/>
-	<sequence name="andar-baixo" start="9" end="11" loop="true"/>
-</animation>
