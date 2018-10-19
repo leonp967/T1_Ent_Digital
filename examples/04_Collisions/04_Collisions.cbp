@@ -111,6 +111,12 @@
 		<Linker>
 			<Add directory="../../lib" />
 		</Linker>
+		<Unit filename="EndState.cpp" />
+		<Unit filename="EndState.h" />
+		<Unit filename="MenuState.cpp" />
+		<Unit filename="MenuState.h" />
+		<Unit filename="PauseState.cpp" />
+		<Unit filename="PauseState.h" />
 		<Unit filename="PlayState.cpp" />
 		<Unit filename="PlayState.h" />
 		<Unit filename="main.cpp" />

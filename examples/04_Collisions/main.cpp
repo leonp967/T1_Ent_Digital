@@ -1,25 +1,13 @@
-/*
- * Exemplo de uso do framework de jogo
- *
- * Cria um jogo com 3 estados: "menu", "play" e "pause"
- *
- */
-
-#include <iostream>
-#include <cstdlib>
-#include <string>
-#include <cmath>
-
 #include "Game.h"
-#include "PlayState.h"
+#include "MenuState.h"
 
 int main(int argc, char **argv)
 {
     cgf::Game game(5,30);
 
-	game.init("Pacman",900,720,false);
+	game.init("Pac-Man",900,720,false);
 
-    game.changeState(PlayState::instance());
+    game.changeState(MenuState::instance());
 
 	while(game.isRunning())
 	{
@@ -28,7 +16,6 @@ int main(int argc, char **argv)
 		game.draw();
 	}
 
-	// cleanup the engine
 	game.clean();
 
     return 0;

@@ -13,13 +13,13 @@
 #include "Game.h"
 #include "PlayState.h"
 #include "InputManager.h"
+#include "EndState.h"
+#include "PauseState.h"
 #include <time.h>
 
 PlayState PlayState::m_PlayState;
 
 using namespace std;
-
-vector<cgf::Sprite> bolinhas;
 
 void PlayState::init()
 {
@@ -36,8 +36,7 @@ void PlayState::init()
     text.setFillColor(sf::Color::White);
     text.setStyle(sf::Text::Bold);
 
-    mapa = new tmx::MapLoader("data/maps/pacman");       // all maps/tiles will be read from data/maps
-    // mapa->AddSearchPath("data/maps/tilesets"); // e.g.: adding more search paths for tilesets
+    mapa = new tmx::MapLoader("data/maps/pacman");
     mapa->Load("mapa_pacman.tmx");
 
     walkStates[0] = "andar-direita";
@@ -53,10 +52,11 @@ void PlayState::init()
     player.setScale(0.7,0.7);
     player.play();
 
-    initPoints();
+    //initPoints();
+    initPointsFixed();
 
-    dirx = 0; // sprite dir: right (1), left (-1)
-    diry = 0; // down (1), up (-1)
+    dirx = 0;
+    diry = 0;
 
     im = cgf::InputManager::instance();
 
@@ -66,9 +66,8 @@ void PlayState::init()
     im->addKeyInput("down", sf::Keyboard::Down);
     im->addKeyInput("quit", sf::Keyboard::Escape);
     im->addKeyInput("stats", sf::Keyboard::S);
-    im->addMouseInput("rightclick", sf::Mouse::Right);
+    im->addKeyInput("pause", sf::Keyboard::P);
 
-    // Camera control
     im->addKeyInput("zoomin", sf::Keyboard::Z);
     im->addKeyInput("zoomout", sf::Keyboard::X);
 
@@ -78,6 +77,7 @@ void PlayState::init()
 void PlayState::cleanup()
 {
     delete mapa;
+    pointsVector.clear();
     cout << "PlayState: Clean" << endl;
 }
 
@@ -94,7 +94,7 @@ void PlayState::resume()
 void PlayState::handleEvents(cgf::Game* game)
 {
     screen = game->getScreen();
-    sf::View view = screen->getView(); // gets the view
+    sf::View view = screen->getView();
     sf::Event event;
 
     while (screen->pollEvent(event))
@@ -126,7 +126,10 @@ void PlayState::handleEvents(cgf::Game* game)
         newDir = DOWN;
     }
 
-    if(im->testEvent("quit") || im->testEvent("rightclick"))
+    if(im->testEvent("pause"))
+        game->pushState(PauseState::instance());
+
+    if(im->testEvent("quit"))
         game->quit();
 
     if(im->testEvent("stats"))
@@ -136,7 +139,8 @@ void PlayState::handleEvents(cgf::Game* game)
         view.zoom(1.01);
         screen->setView(view);
     }
-    else if(im->testEvent("zoomout")) {
+
+    if(im->testEvent("zoomout")) {
         view.zoom(0.99);
         screen->setView(view);
     }
@@ -160,8 +164,7 @@ void PlayState::update(cgf::Game* game)
 {
     screen = game->getScreen();
     checkCollision(1, game, &player);
-    checkCollisionPoint();
-//    player.update(game->getUpdateInterval());
+    checkCollisionPoint(game);
     centerMapOnPlayer();
 }
 
@@ -170,7 +173,7 @@ void PlayState::draw(cgf::Game* game)
     screen = game->getScreen();
     mapa->Draw(*screen);
     screen->draw(player);
-    for(cgf::Sprite ponto : bolinhas)
+    for(cgf::Sprite ponto : pointsVector)
         screen->draw(ponto);
     screen->draw(text);
 }
@@ -194,7 +197,7 @@ void PlayState::initPoints(){
         }
         printf("depoisWhile\n");
         ponto.setPosition(posX, posY);
-        bolinhas.push_back(ponto);
+        pointsVector.push_back(ponto);
     }
 }
 
@@ -227,18 +230,21 @@ void PlayState::centerMapOnPlayer()
     screen->setView(view);
 }
 
-void PlayState::checkCollisionPoint(){
+void PlayState::checkCollisionPoint(cgf::Game* game){
+    if(pointsVector.size() == 0)
+        game->changeState(EndState::instance());
+
     int i;
     bool colisao = false;
-    for(i = 0; i < bolinhas.size(); i++){
-        if(bolinhas[i].bboxCollision(player)){
+    for(i = 0; i < pointsVector.size(); i++){
+        if(pointsVector[i].bboxCollision(player)){
             colisao = true;
             addPoint();
             break;
         }
     }
-    if(bolinhas.size() > 0 && colisao)
-        bolinhas.erase(bolinhas.begin() + i);
+    if(pointsVector.size() > 0 && colisao)
+        pointsVector.erase(pointsVector.begin() + i);
 }
 
 bool PlayState::checkCollision(uint8_t layer, cgf::Game* game, cgf::Sprite* obj)
@@ -420,7 +426,24 @@ void PlayState::addPoint(){
     text.setString(stringStream.str());
 }
 
-// Get a cell GID from the map (x and y in global coords)
+void PlayState::initPointsFixed(){
+    tmx::MapLayer layer = mapa->GetLayers()[0];
+    int offsetX = mapa->GetMapTileSize().x / 2;
+    int offsetY = mapa->GetMapTileSize().y / 2;
+    for(int x = 0; x < mapa->GetMapSize().x; x+=mapa->GetMapTileSize().x){
+        for(int y = 0; y < mapa->GetMapSize().y; y+=mapa->GetMapTileSize().y){
+            float posX = x + offsetX;
+            float posY = y + offsetY;
+            if(!getCellFromMap(1, posX, posY) && !getCellFromMap(2, posX, posY)){
+                cgf::Sprite ponto = cgf::Sprite();
+                ponto.load("data/img/pacman/sprites/ponto.png");
+                ponto.setPosition(x, y);
+                pointsVector.push_back(ponto);
+            }
+        }
+    }
+}
+
 sf::Uint16 PlayState::getCellFromMap(uint8_t layernum, float x, float y)
 {
     auto& layers = mapa->GetLayers();

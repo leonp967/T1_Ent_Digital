@@ -1793,13 +1793,13 @@
 	"PlayState.h"
 	"InputManager.h"
 
-1539486173 source:c:\users\leona\desktop\t1_ent_digital\examples\04_collisions\main.cpp
+1539924768 source:c:\users\leona\desktop\t1_ent_digital\examples\04_collisions\main.cpp
 	<iostream>
 	<cstdlib>
 	<string>
 	<cmath>
 	"Game.h"
-	"PlayState.h"
+	"MenuState.h"
 
 1522110514 c:\users\leona\desktop\t1_ent_digital\lib\cgf\include\game.h
 	<SFML/Audio.hpp>
@@ -2314,7 +2314,7 @@
 	<SFML/System/Time.hpp>
 	<SFML/System/Clock.hpp>
 
-1539482954 c:\users\leona\desktop\t1_ent_digital\examples\04_collisions\playstate.h
+1539922238 c:\users\leona\desktop\t1_ent_digital\examples\04_collisions\playstate.h
 	"GameState.h"
 	"Sprite.h"
 	"InputManager.h"
@@ -2384,11 +2384,46 @@
 1522110514 c:\users\leona\desktop\t1_ent_digital\lib\cgf\include\debug.h
 	<iostream>
 
-1539492972 source:c:\users\leona\desktop\t1_ent_digital\examples\04_collisions\playstate.cpp
+1539925826 source:c:\users\leona\desktop\t1_ent_digital\examples\04_collisions\playstate.cpp
 	<iostream>
 	<cmath>
 	"Game.h"
 	"PlayState.h"
 	"InputManager.h"
+	"EndState.h"
+	"PauseState.h"
 	<time.h>
+
+1539927604 source:c:\users\leona\desktop\t1_ent_digital\examples\04_collisions\endstate.cpp
+	<iostream>
+	"Game.h"
+	"InputManager.h"
+	"EndState.h"
+	"PlayState.h"
+
+1539924256 c:\users\leona\desktop\t1_ent_digital\examples\04_collisions\endstate.h
+	"GameState.h"
+	"Sprite.h"
+
+1539927466 source:c:\users\leona\desktop\t1_ent_digital\examples\04_collisions\pausestate.cpp
+	<iostream>
+	<cmath>
+	"Game.h"
+	"PauseState.h"
+
+1539927182 c:\users\leona\desktop\t1_ent_digital\examples\04_collisions\pausestate.h
+	"GameState.h"
+	"Sprite.h"
+	"InputManager.h"
+
+1539924803 c:\users\leona\desktop\t1_ent_digital\examples\04_collisions\menustate.h
+	"GameState.h"
+	"Sprite.h"
+
+1539925336 source:c:\users\leona\desktop\t1_ent_digital\examples\04_collisions\menustate.cpp
+	<iostream>
+	"Game.h"
+	"InputManager.h"
+	"MenuState.h"
+	"PlayState.h"
 
