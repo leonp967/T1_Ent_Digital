@@ -1,3 +1,3 @@
 T1 de Entretenimento Digital
 
-Remake do Pacman
+Remake do Pac-Man
