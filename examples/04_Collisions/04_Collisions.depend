@@ -1793,11 +1793,7 @@
 	"PlayState.h"
 	"InputManager.h"
 
-1539924768 source:c:\users\leona\desktop\t1_ent_digital\examples\04_collisions\main.cpp
-	<iostream>
-	<cstdlib>
-	<string>
-	<cmath>
+1539927700 source:c:\users\leona\desktop\t1_ent_digital\examples\04_collisions\main.cpp
 	"Game.h"
 	"MenuState.h"
 
@@ -2314,7 +2310,7 @@
 	<SFML/System/Time.hpp>
 	<SFML/System/Clock.hpp>
 
-1539922238 c:\users\leona\desktop\t1_ent_digital\examples\04_collisions\playstate.h
+1539927884 c:\users\leona\desktop\t1_ent_digital\examples\04_collisions\playstate.h
 	"GameState.h"
 	"Sprite.h"
 	"InputManager.h"
