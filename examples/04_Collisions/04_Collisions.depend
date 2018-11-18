@@ -1793,18 +1793,18 @@
 	"PlayState.h"
 	"InputManager.h"
 
-1539927700 source:c:\users\leona\desktop\t1_ent_digital\examples\04_collisions\main.cpp
+1539931300 source:c:\users\leona\desktop\t1_ent_digital\examples\04_collisions\main.cpp
 	"Game.h"
 	"MenuState.h"
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\cgf\include\game.h
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\cgf\include\game.h
 	<SFML/Audio.hpp>
 	<SFML/Graphics.hpp>
 	<stack>
 	<memory>
 	"ClockHUD.h"
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\audio.hpp
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\audio.hpp
 	<SFML/System.hpp>
 	<SFML/Audio/InputSoundFile.hpp>
 	<SFML/Audio/Listener.hpp>
@@ -1820,7 +1820,7 @@
 	<SFML/Audio/SoundSource.hpp>
 	<SFML/Audio/SoundStream.hpp>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\system.hpp
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\system.hpp
 	<SFML/Config.hpp>
 	<SFML/System/Clock.hpp>
 	<SFML/System/Err.hpp>
@@ -1840,24 +1840,24 @@
 	<SFML/System/Vector2.hpp>
 	<SFML/System/Vector3.hpp>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\config.hpp
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\config.hpp
 	"TargetConditionals.h"
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\system\clock.hpp
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\system\clock.hpp
 	<SFML/System/Export.hpp>
 	<SFML/System/Time.hpp>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\system\export.hpp
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\system\export.hpp
 	<SFML/Config.hpp>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\system\time.hpp
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\system\time.hpp
 	<SFML/System/Export.hpp>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\system\err.hpp
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\system\err.hpp
 	<SFML/System/Export.hpp>
 	<ostream>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\system\fileinputstream.hpp
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\system\fileinputstream.hpp
 	<SFML/Config.hpp>
 	<SFML/System/Export.hpp>
 	<SFML/System/InputStream.hpp>
@@ -1865,32 +1865,32 @@
 	<cstdio>
 	<string>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\system\inputstream.hpp
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\system\inputstream.hpp
 	<SFML/Config.hpp>
 	<SFML/System/Export.hpp>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\system\noncopyable.hpp
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\system\noncopyable.hpp
 	<SFML/System/Export.hpp>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\system\lock.hpp
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\system\lock.hpp
 	<SFML/System/Export.hpp>
 	<SFML/System/NonCopyable.hpp>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\system\memoryinputstream.hpp
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\system\memoryinputstream.hpp
 	<SFML/Config.hpp>
 	<SFML/System/InputStream.hpp>
 	<SFML/System/Export.hpp>
 	<cstdlib>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\system\mutex.hpp
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\system\mutex.hpp
 	<SFML/System/Export.hpp>
 	<SFML/System/NonCopyable.hpp>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\system\sleep.hpp
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\system\sleep.hpp
 	<SFML/System/Export.hpp>
 	<SFML/System/Time.hpp>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\system\string.hpp
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\system\string.hpp
 	<SFML/System/Export.hpp>
 	<SFML/System/Utf.hpp>
 	<iterator>
@@ -1898,7 +1898,7 @@
 	<string>
 	<SFML/System/String.inl>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\system\utf.hpp
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\system\utf.hpp
 	<SFML/Config.hpp>
 	<algorithm>
 	<locale>
@@ -1906,53 +1906,53 @@
 	<cstdlib>
 	<SFML/System/Utf.inl>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\system\utf.inl
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\system\utf.inl
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\system\string.inl
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\system\string.inl
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\system\thread.hpp
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\system\thread.hpp
 	<SFML/System/Export.hpp>
 	<SFML/System/NonCopyable.hpp>
 	<cstdlib>
 	<SFML/System/Thread.inl>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\system\thread.inl
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\system\thread.inl
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\system\threadlocal.hpp
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\system\threadlocal.hpp
 	<SFML/System/Export.hpp>
 	<SFML/System/NonCopyable.hpp>
 	<cstdlib>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\system\threadlocalptr.hpp
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\system\threadlocalptr.hpp
 	<SFML/System/ThreadLocal.hpp>
 	<SFML/System/ThreadLocalPtr.inl>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\system\threadlocalptr.inl
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\system\threadlocalptr.inl
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\system\vector2.hpp
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\system\vector2.hpp
 	<SFML/System/Vector2.inl>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\system\vector2.inl
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\system\vector2.inl
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\system\vector3.hpp
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\system\vector3.hpp
 	<SFML/System/Vector3.inl>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\system\vector3.inl
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\system\vector3.inl
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\audio\inputsoundfile.hpp
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\audio\inputsoundfile.hpp
 	<SFML/Audio/Export.hpp>
 	<SFML/System/NonCopyable.hpp>
 	<SFML/System/Time.hpp>
 	<string>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\audio\export.hpp
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\audio\export.hpp
 	<SFML/Config.hpp>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\audio\listener.hpp
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\audio\listener.hpp
 	<SFML/Audio/Export.hpp>
 	<SFML/System/Vector3.hpp>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\audio\music.hpp
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\audio\music.hpp
 	<SFML/Audio/Export.hpp>
 	<SFML/Audio/SoundStream.hpp>
 	<SFML/Audio/InputSoundFile.hpp>
@@ -1961,7 +1961,7 @@
 	<string>
 	<vector>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\audio\soundstream.hpp
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\audio\soundstream.hpp
 	<SFML/Audio/Export.hpp>
 	<SFML/Audio/SoundSource.hpp>
 	<SFML/System/Thread.hpp>
@@ -1969,26 +1969,26 @@
 	<SFML/System/Mutex.hpp>
 	<cstdlib>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\audio\soundsource.hpp
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\audio\soundsource.hpp
 	<SFML/Audio/Export.hpp>
 	<SFML/Audio/AlResource.hpp>
 	<SFML/System/Vector3.hpp>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\audio\alresource.hpp
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\audio\alresource.hpp
 	<SFML/Audio/Export.hpp>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\audio\outputsoundfile.hpp
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\audio\outputsoundfile.hpp
 	<SFML/Audio/Export.hpp>
 	<SFML/System/NonCopyable.hpp>
 	<string>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\audio\sound.hpp
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\audio\sound.hpp
 	<SFML/Audio/Export.hpp>
 	<SFML/Audio/SoundSource.hpp>
 	<SFML/System/Time.hpp>
 	<cstdlib>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\audio\soundbuffer.hpp
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\audio\soundbuffer.hpp
 	<SFML/Audio/Export.hpp>
 	<SFML/Audio/AlResource.hpp>
 	<SFML/System/Time.hpp>
@@ -1996,13 +1996,13 @@
 	<vector>
 	<set>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\audio\soundbufferrecorder.hpp
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\audio\soundbufferrecorder.hpp
 	<SFML/Audio/Export.hpp>
 	<SFML/Audio/SoundBuffer.hpp>
 	<SFML/Audio/SoundRecorder.hpp>
 	<vector>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\audio\soundrecorder.hpp
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\audio\soundrecorder.hpp
 	<SFML/Audio/Export.hpp>
 	<SFML/Audio/AlResource.hpp>
 	<SFML/System/Thread.hpp>
@@ -2010,23 +2010,23 @@
 	<vector>
 	<string>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\audio\soundfilefactory.hpp
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\audio\soundfilefactory.hpp
 	<SFML/Audio/Export.hpp>
 	<string>
 	<vector>
 	<SFML/Audio/SoundFileFactory.inl>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\audio\soundfilefactory.inl
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\audio\soundfilefactory.inl
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\audio\soundfilereader.hpp
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\audio\soundfilereader.hpp
 	<SFML/Audio/Export.hpp>
 	<string>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\audio\soundfilewriter.hpp
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\audio\soundfilewriter.hpp
 	<SFML/Audio/Export.hpp>
 	<string>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\graphics.hpp
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\graphics.hpp
 	<SFML/Window.hpp>
 	<SFML/Graphics/BlendMode.hpp>
 	<SFML/Graphics/CircleShape.hpp>
@@ -2054,7 +2054,7 @@
 	<SFML/Graphics/VertexArray.hpp>
 	<SFML/Graphics/View.hpp>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\window.hpp
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\window.hpp
 	<SFML/System.hpp>
 	<SFML/Window/Context.hpp>
 	<SFML/Window/ContextSettings.hpp>
@@ -2069,53 +2069,53 @@
 	<SFML/Window/WindowHandle.hpp>
 	<SFML/Window/WindowStyle.hpp>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\window\context.hpp
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\window\context.hpp
 	<SFML/Window/Export.hpp>
 	<SFML/Window/GlResource.hpp>
 	<SFML/Window/ContextSettings.hpp>
 	<SFML/System/NonCopyable.hpp>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\window\export.hpp
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\window\export.hpp
 	<SFML/Config.hpp>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\window\glresource.hpp
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\window\glresource.hpp
 	<SFML/Window/Export.hpp>
 	<SFML/System/NonCopyable.hpp>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\window\contextsettings.hpp
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\window\contextsettings.hpp
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\window\event.hpp
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\window\event.hpp
 	<SFML/Config.hpp>
 	<SFML/Window/Joystick.hpp>
 	<SFML/Window/Keyboard.hpp>
 	<SFML/Window/Mouse.hpp>
 	<SFML/Window/Sensor.hpp>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\window\joystick.hpp
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\window\joystick.hpp
 	<SFML/Window/Export.hpp>
 	<SFML/System/String.hpp>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\window\keyboard.hpp
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\window\keyboard.hpp
 	<SFML/Window/Export.hpp>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\window\mouse.hpp
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\window\mouse.hpp
 	<SFML/Window/Export.hpp>
 	<SFML/System/Vector2.hpp>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\window\sensor.hpp
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\window\sensor.hpp
 	<SFML/Window/Export.hpp>
 	<SFML/System/Vector3.hpp>
 	<SFML/System/Time.hpp>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\window\touch.hpp
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\window\touch.hpp
 	<SFML/Window/Export.hpp>
 	<SFML/System/Vector2.hpp>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\window\videomode.hpp
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\window\videomode.hpp
 	<SFML/Window/Export.hpp>
 	<vector>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\window\window.hpp
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\window\window.hpp
 	<SFML/Window/Export.hpp>
 	<SFML/Window/ContextSettings.hpp>
 	<SFML/Window/VideoMode.hpp>
@@ -2127,54 +2127,54 @@
 	<SFML/System/NonCopyable.hpp>
 	<SFML/System/String.hpp>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\window\windowhandle.hpp
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\window\windowhandle.hpp
 	<SFML/Config.hpp>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\window\windowstyle.hpp
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\window\windowstyle.hpp
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\graphics\blendmode.hpp
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\graphics\blendmode.hpp
 	<SFML/Graphics/Export.hpp>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\graphics\export.hpp
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\graphics\export.hpp
 	<SFML/Config.hpp>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\graphics\circleshape.hpp
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\graphics\circleshape.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Shape.hpp>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\graphics\shape.hpp
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\graphics\shape.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Drawable.hpp>
 	<SFML/Graphics/Transformable.hpp>
 	<SFML/Graphics/VertexArray.hpp>
 	<SFML/System/Vector2.hpp>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\graphics\drawable.hpp
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\graphics\drawable.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/RenderStates.hpp>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\graphics\renderstates.hpp
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\graphics\renderstates.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/BlendMode.hpp>
 	<SFML/Graphics/Transform.hpp>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\graphics\transform.hpp
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\graphics\transform.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Rect.hpp>
 	<SFML/System/Vector2.hpp>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\graphics\rect.hpp
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\graphics\rect.hpp
 	<SFML/System/Vector2.hpp>
 	<algorithm>
 	<SFML/Graphics/Rect.inl>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\graphics\rect.inl
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\graphics\rect.inl
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\graphics\transformable.hpp
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\graphics\transformable.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Transform.hpp>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\graphics\vertexarray.hpp
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\graphics\vertexarray.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Vertex.hpp>
 	<SFML/Graphics/PrimitiveType.hpp>
@@ -2182,22 +2182,22 @@
 	<SFML/Graphics/Drawable.hpp>
 	<vector>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\graphics\vertex.hpp
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\graphics\vertex.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Color.hpp>
 	<SFML/System/Vector2.hpp>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\graphics\color.hpp
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\graphics\color.hpp
 	<SFML/Graphics/Export.hpp>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\graphics\primitivetype.hpp
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\graphics\primitivetype.hpp
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\graphics\convexshape.hpp
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\graphics\convexshape.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Shape.hpp>
 	<vector>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\graphics\font.hpp
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\graphics\font.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Glyph.hpp>
 	<SFML/Graphics/Texture.hpp>
@@ -2208,27 +2208,27 @@
 	<string>
 	<vector>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\graphics\glyph.hpp
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\graphics\glyph.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Rect.hpp>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\graphics\texture.hpp
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\graphics\texture.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Image.hpp>
 	<SFML/Window/GlResource.hpp>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\graphics\image.hpp
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\graphics\image.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Color.hpp>
 	<SFML/Graphics/Rect.hpp>
 	<string>
 	<vector>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\graphics\rectangleshape.hpp
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\graphics\rectangleshape.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Shape.hpp>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\graphics\rendertarget.hpp
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\graphics\rendertarget.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Color.hpp>
 	<SFML/Graphics/Rect.hpp>
@@ -2240,25 +2240,25 @@
 	<SFML/Graphics/Vertex.hpp>
 	<SFML/System/NonCopyable.hpp>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\graphics\view.hpp
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\graphics\view.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Rect.hpp>
 	<SFML/Graphics/Transform.hpp>
 	<SFML/System/Vector2.hpp>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\graphics\rendertexture.hpp
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\graphics\rendertexture.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Texture.hpp>
 	<SFML/Graphics/RenderTarget.hpp>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\graphics\renderwindow.hpp
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\graphics\renderwindow.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/RenderTarget.hpp>
 	<SFML/Graphics/Image.hpp>
 	<SFML/Window/Window.hpp>
 	<string>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\graphics\shader.hpp
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\graphics\shader.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Glsl.hpp>
 	<SFML/Window/GlResource.hpp>
@@ -2268,23 +2268,23 @@
 	<map>
 	<string>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\graphics\glsl.hpp
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\graphics\glsl.hpp
 	<SFML/Graphics/Transform.hpp>
 	<SFML/Graphics/Color.hpp>
 	<SFML/System/Vector2.hpp>
 	<SFML/System/Vector3.hpp>
 	<SFML/Graphics/Glsl.inl>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\graphics\glsl.inl
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\graphics\glsl.inl
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\graphics\sprite.hpp
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\graphics\sprite.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Drawable.hpp>
 	<SFML/Graphics/Transformable.hpp>
 	<SFML/Graphics/Vertex.hpp>
 	<SFML/Graphics/Rect.hpp>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\graphics\text.hpp
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\sfml-2.4.2\include\sfml\graphics\text.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Drawable.hpp>
 	<SFML/Graphics/Transformable.hpp>
@@ -2295,7 +2295,7 @@
 	<string>
 	<vector>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\cgf\include\clockhud.h
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\cgf\include\clockhud.h
 	<vector>
 	<string>
 	<sstream>
@@ -2303,24 +2303,25 @@
 	<SFML/Graphics.hpp>
 	"FrameClock.h"
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\cgf\include\frameclock.h
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\cgf\include\frameclock.h
 	<limits>
 	<cassert>
 	<algorithm>
 	<SFML/System/Time.hpp>
 	<SFML/System/Clock.hpp>
 
-1539927884 c:\users\leona\desktop\t1_ent_digital\examples\04_collisions\playstate.h
+1542512025 c:\users\leona\desktop\t1_ent_digital\examples\04_collisions\playstate.h
 	"GameState.h"
 	"Sprite.h"
 	"InputManager.h"
 	<tmx/MapLoader.h>
 	<string>
+	"Physics.h"
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\cgf\include\gamestate.h
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\cgf\include\gamestate.h
 	"Game.h"
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\cgf\include\sprite.h
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\cgf\include\sprite.h
 	<vector>
 	<map>
 	<SFML/Graphics/RenderTarget.hpp>
@@ -2332,16 +2333,16 @@
 	"Anim.h"
 	"pugixml/pugixml.hpp"
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\cgf\include\texturemanager.h
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\cgf\include\texturemanager.h
 	<map>
 	<string>
 	<SFML/Graphics.hpp>
 	<memory>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\cgf\include\anim.h
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\cgf\include\anim.h
 	<string>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\cgf\include\pugixml\pugixml.hpp
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\cgf\include\pugixml\pugixml.hpp
 	"pugiconfig.hpp"
 	<stddef.h>
 	<exception>
@@ -2349,22 +2350,22 @@
 	<iosfwd>
 	<string>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\cgf\include\pugixml\pugiconfig.hpp
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\cgf\include\pugixml\pugiconfig.hpp
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\cgf\include\inputmanager.h
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\cgf\include\inputmanager.h
 	<map>
 	<SFML/Graphics.hpp>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\cgf\include\tmx\maploader.h
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\cgf\include\tmx\maploader.h
 	<tmx/QuadTreeNode.h>
 	<iostream>
 	<pugixml/pugixml.hpp>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\cgf\include\tmx\quadtreenode.h
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\cgf\include\tmx\quadtreenode.h
 	<tmx/MapObject.h>
 	<memory>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\cgf\include\tmx\mapobject.h
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\cgf\include\tmx\mapobject.h
 	<string>
 	<vector>
 	<map>
@@ -2373,14 +2374,14 @@
 	<tmx/Helpers.h>
 	"Debug.h"
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\cgf\include\tmx\helpers.h
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\cgf\include\tmx\helpers.h
 	<math.h>
 	<SFML/Graphics/Rect.hpp>
 
-1522110514 c:\users\leona\desktop\t1_ent_digital\lib\cgf\include\debug.h
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\cgf\include\debug.h
 	<iostream>
 
-1539925826 source:c:\users\leona\desktop\t1_ent_digital\examples\04_collisions\playstate.cpp
+1542511335 source:c:\users\leona\desktop\t1_ent_digital\examples\04_collisions\playstate.cpp
 	<iostream>
 	<cmath>
 	"Game.h"
@@ -2389,37 +2390,213 @@
 	"EndState.h"
 	"PauseState.h"
 	<time.h>
+	<sstream>
+	<iomanip>
 
-1539927604 source:c:\users\leona\desktop\t1_ent_digital\examples\04_collisions\endstate.cpp
+1542511961 source:c:\users\leona\desktop\t1_ent_digital\examples\04_collisions\endstate.cpp
 	<iostream>
 	"Game.h"
 	"InputManager.h"
 	"EndState.h"
 	"PlayState.h"
 
-1539924256 c:\users\leona\desktop\t1_ent_digital\examples\04_collisions\endstate.h
+1542511740 c:\users\leona\desktop\t1_ent_digital\examples\04_collisions\endstate.h
 	"GameState.h"
 	"Sprite.h"
 
-1539927466 source:c:\users\leona\desktop\t1_ent_digital\examples\04_collisions\pausestate.cpp
+1539931066 source:c:\users\leona\desktop\t1_ent_digital\examples\04_collisions\pausestate.cpp
 	<iostream>
 	<cmath>
 	"Game.h"
 	"PauseState.h"
 
-1539927182 c:\users\leona\desktop\t1_ent_digital\examples\04_collisions\pausestate.h
+1539930782 c:\users\leona\desktop\t1_ent_digital\examples\04_collisions\pausestate.h
 	"GameState.h"
 	"Sprite.h"
 	"InputManager.h"
 
-1539924803 c:\users\leona\desktop\t1_ent_digital\examples\04_collisions\menustate.h
+1539928403 c:\users\leona\desktop\t1_ent_digital\examples\04_collisions\menustate.h
 	"GameState.h"
 	"Sprite.h"
 
-1539925336 source:c:\users\leona\desktop\t1_ent_digital\examples\04_collisions\menustate.cpp
+1539928936 source:c:\users\leona\desktop\t1_ent_digital\examples\04_collisions\menustate.cpp
 	<iostream>
 	"Game.h"
 	"InputManager.h"
 	"MenuState.h"
 	"PlayState.h"
+
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\cgf\include\physics.h
+	<Box2D/Box2D.h>
+	<memory>
+	<vector>
+	"Sprite.h"
+	"EEDebugDraw3.h"
+	<cmath>
+
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\box2d-2.3.0\include\box2d\box2d.h
+	<Box2D/Common/b2Settings.h>
+	<Box2D/Common/b2Draw.h>
+	<Box2D/Common/b2Timer.h>
+	<Box2D/Collision/Shapes/b2CircleShape.h>
+	<Box2D/Collision/Shapes/b2EdgeShape.h>
+	<Box2D/Collision/Shapes/b2ChainShape.h>
+	<Box2D/Collision/Shapes/b2PolygonShape.h>
+	<Box2D/Collision/b2BroadPhase.h>
+	<Box2D/Collision/b2Distance.h>
+	<Box2D/Collision/b2DynamicTree.h>
+	<Box2D/Collision/b2TimeOfImpact.h>
+	<Box2D/Dynamics/b2Body.h>
+	<Box2D/Dynamics/b2Fixture.h>
+	<Box2D/Dynamics/b2WorldCallbacks.h>
+	<Box2D/Dynamics/b2TimeStep.h>
+	<Box2D/Dynamics/b2World.h>
+	<Box2D/Dynamics/Contacts/b2Contact.h>
+	<Box2D/Dynamics/Joints/b2DistanceJoint.h>
+	<Box2D/Dynamics/Joints/b2FrictionJoint.h>
+	<Box2D/Dynamics/Joints/b2GearJoint.h>
+	<Box2D/Dynamics/Joints/b2MotorJoint.h>
+	<Box2D/Dynamics/Joints/b2MouseJoint.h>
+	<Box2D/Dynamics/Joints/b2PrismaticJoint.h>
+	<Box2D/Dynamics/Joints/b2PulleyJoint.h>
+	<Box2D/Dynamics/Joints/b2RevoluteJoint.h>
+	<Box2D/Dynamics/Joints/b2RopeJoint.h>
+	<Box2D/Dynamics/Joints/b2WeldJoint.h>
+	<Box2D/Dynamics/Joints/b2WheelJoint.h>
+
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\box2d-2.3.0\include\box2d\common\b2settings.h
+	<stddef.h>
+	<assert.h>
+	<float.h>
+
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\box2d-2.3.0\include\box2d\common\b2draw.h
+	<Box2D/Common/b2Math.h>
+
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\box2d-2.3.0\include\box2d\common\b2math.h
+	<Box2D/Common/b2Settings.h>
+	<math.h>
+
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\box2d-2.3.0\include\box2d\common\b2timer.h
+	<Box2D/Common/b2Settings.h>
+
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\box2d-2.3.0\include\box2d\collision\shapes\b2circleshape.h
+	<Box2D/Collision/Shapes/b2Shape.h>
+
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\box2d-2.3.0\include\box2d\collision\shapes\b2shape.h
+	<Box2D/Common/b2BlockAllocator.h>
+	<Box2D/Common/b2Math.h>
+	<Box2D/Collision/b2Collision.h>
+
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\box2d-2.3.0\include\box2d\common\b2blockallocator.h
+	<Box2D/Common/b2Settings.h>
+
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\box2d-2.3.0\include\box2d\collision\b2collision.h
+	<Box2D/Common/b2Math.h>
+	<limits.h>
+
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\box2d-2.3.0\include\box2d\collision\shapes\b2edgeshape.h
+	<Box2D/Collision/Shapes/b2Shape.h>
+
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\box2d-2.3.0\include\box2d\collision\shapes\b2chainshape.h
+	<Box2D/Collision/Shapes/b2Shape.h>
+
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\box2d-2.3.0\include\box2d\collision\shapes\b2polygonshape.h
+	<Box2D/Collision/Shapes/b2Shape.h>
+
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\box2d-2.3.0\include\box2d\collision\b2broadphase.h
+	<Box2D/Common/b2Settings.h>
+	<Box2D/Collision/b2Collision.h>
+	<Box2D/Collision/b2DynamicTree.h>
+	<algorithm>
+
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\box2d-2.3.0\include\box2d\collision\b2dynamictree.h
+	<Box2D/Collision/b2Collision.h>
+	<Box2D/Common/b2GrowableStack.h>
+
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\box2d-2.3.0\include\box2d\common\b2growablestack.h
+	<Box2D/Common/b2Settings.h>
+	<memory.h>
+
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\box2d-2.3.0\include\box2d\collision\b2distance.h
+	<Box2D/Common/b2Math.h>
+
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\box2d-2.3.0\include\box2d\collision\b2timeofimpact.h
+	<Box2D/Common/b2Math.h>
+	<Box2D/Collision/b2Distance.h>
+
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\box2d-2.3.0\include\box2d\dynamics\b2body.h
+	<Box2D/Common/b2Math.h>
+	<Box2D/Collision/Shapes/b2Shape.h>
+	<memory>
+
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\box2d-2.3.0\include\box2d\dynamics\b2fixture.h
+	<Box2D/Dynamics/b2Body.h>
+	<Box2D/Collision/b2Collision.h>
+	<Box2D/Collision/Shapes/b2Shape.h>
+
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\box2d-2.3.0\include\box2d\dynamics\b2worldcallbacks.h
+	<Box2D/Common/b2Settings.h>
+
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\box2d-2.3.0\include\box2d\dynamics\b2timestep.h
+	<Box2D/Common/b2Math.h>
+
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\box2d-2.3.0\include\box2d\dynamics\b2world.h
+	<Box2D/Common/b2Math.h>
+	<Box2D/Common/b2BlockAllocator.h>
+	<Box2D/Common/b2StackAllocator.h>
+	<Box2D/Dynamics/b2ContactManager.h>
+	<Box2D/Dynamics/b2WorldCallbacks.h>
+	<Box2D/Dynamics/b2TimeStep.h>
+
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\box2d-2.3.0\include\box2d\common\b2stackallocator.h
+	<Box2D/Common/b2Settings.h>
+
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\box2d-2.3.0\include\box2d\dynamics\b2contactmanager.h
+	<Box2D/Collision/b2BroadPhase.h>
+
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\box2d-2.3.0\include\box2d\dynamics\contacts\b2contact.h
+	<Box2D/Common/b2Math.h>
+	<Box2D/Collision/b2Collision.h>
+	<Box2D/Collision/Shapes/b2Shape.h>
+	<Box2D/Dynamics/b2Fixture.h>
+
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\box2d-2.3.0\include\box2d\dynamics\joints\b2distancejoint.h
+	<Box2D/Dynamics/Joints/b2Joint.h>
+
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\box2d-2.3.0\include\box2d\dynamics\joints\b2joint.h
+	<Box2D/Common/b2Math.h>
+
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\box2d-2.3.0\include\box2d\dynamics\joints\b2frictionjoint.h
+	<Box2D/Dynamics/Joints/b2Joint.h>
+
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\box2d-2.3.0\include\box2d\dynamics\joints\b2gearjoint.h
+	<Box2D/Dynamics/Joints/b2Joint.h>
+
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\box2d-2.3.0\include\box2d\dynamics\joints\b2motorjoint.h
+	<Box2D/Dynamics/Joints/b2Joint.h>
+
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\box2d-2.3.0\include\box2d\dynamics\joints\b2mousejoint.h
+	<Box2D/Dynamics/Joints/b2Joint.h>
+
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\box2d-2.3.0\include\box2d\dynamics\joints\b2prismaticjoint.h
+	<Box2D/Dynamics/Joints/b2Joint.h>
+
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\box2d-2.3.0\include\box2d\dynamics\joints\b2pulleyjoint.h
+	<Box2D/Dynamics/Joints/b2Joint.h>
+
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\box2d-2.3.0\include\box2d\dynamics\joints\b2revolutejoint.h
+	<Box2D/Dynamics/Joints/b2Joint.h>
+
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\box2d-2.3.0\include\box2d\dynamics\joints\b2ropejoint.h
+	<Box2D/Dynamics/Joints/b2Joint.h>
+
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\box2d-2.3.0\include\box2d\dynamics\joints\b2weldjoint.h
+	<Box2D/Dynamics/Joints/b2Joint.h>
+
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\box2d-2.3.0\include\box2d\dynamics\joints\b2wheeljoint.h
+	<Box2D/Dynamics/Joints/b2Joint.h>
+
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\cgf\include\eedebugdraw3.h
+	<Box2D/Box2D.h>
+	<SFML/Graphics.hpp>
 

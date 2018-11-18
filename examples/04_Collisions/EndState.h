@@ -19,8 +19,9 @@ class EndState : public cgf::GameState
     void draw(cgf::Game* game);
 
     // Implement Singleton Pattern
-    static EndState* instance()
+    static EndState* instance(bool win)
     {
+        won = win;
         return &m_EndState;
     }
 
@@ -37,6 +38,7 @@ class EndState : public cgf::GameState
     sf::Font font;
     sf::Text text;
     sf::Text text2;
+    static bool won;
 };
 
 #endif

@@ -7,6 +7,7 @@
 EndState EndState::m_EndState;
 
 using namespace std;
+bool EndState::won;
 
 void EndState::init()
 {
@@ -16,7 +17,10 @@ void EndState::init()
     }
     text = sf::Text();
     text.setFont(font);
-    text.setString(L"You Win!");
+    if(won)
+        text.setString(L"You Win!");
+    else
+        text.setString(L"Game Over");
     text.setCharacterSize(50);
     text.setFillColor(sf::Color::White);
     text.setStyle(sf::Text::Bold);
@@ -52,27 +56,18 @@ void EndState::handleEvents(cgf::Game* game)
 
     while (screen->pollEvent(event))
     {
-        // check the type of the event...
         switch (event.type)
         {
-            // window closed
         case sf::Event::Closed:
             game->quit();
             break;
 
-            // key pressed
         case sf::Event::KeyPressed:
             if(event.key.code == sf::Keyboard::Escape)
                 game->quit();
             if(event.key.code == sf::Keyboard::Return)
                 game->changeState(PlayState::instance());
-            //game->changeState(PlayMapTop::instance());
-            //game->changeState(PlayMapAI::instance());
-            //game->changeState(PlayPhysics::instance());
-            //game->changeState(PlayMapPhysics::instance());
             break;
-
-            // we don't process other types of events
         default:
             break;
         }
@@ -86,7 +81,10 @@ void EndState::update(cgf::Game* game)
 void EndState::draw(cgf::Game *game)
 {
     screen = game->getScreen();
-    text.setPosition(screen->getView().getCenter().x - 200, screen->getView().getCenter().y - 100);
+    if(won)
+        text.setPosition(screen->getView().getCenter().x - 200, screen->getView().getCenter().y - 100);
+    else
+        text.setPosition(screen->getView().getCenter().x - 225, screen->getView().getCenter().y - 100);
     text2.setPosition(screen->getView().getCenter().x - 280, screen->getView().getCenter().y - 40);
     screen->draw(text);
     screen->draw(text2);

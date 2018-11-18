@@ -16,6 +16,8 @@
 #include "EndState.h"
 #include "PauseState.h"
 #include <time.h>
+#include <sstream>
+#include <iomanip>
 
 PlayState PlayState::m_PlayState;
 
@@ -30,11 +32,19 @@ void PlayState::init()
     pontos = 0;
     text.setFont(font);
     ostringstream stringStream;
-    stringStream << "Pontos: " << pontos;
+    stringStream << "Pontos: 0000";
     text.setString(stringStream.str());
     text.setCharacterSize(20);
     text.setFillColor(sf::Color::White);
     text.setStyle(sf::Text::Bold);
+
+    textVida.setFont(font);
+    ostringstream stringStreamVida;
+    stringStreamVida << "Vidas: ";
+    textVida.setString(stringStreamVida.str());
+    textVida.setCharacterSize(20);
+    textVida.setFillColor(sf::Color::White);
+    textVida.setStyle(sf::Text::Bold);
 
     mapa = new tmx::MapLoader("data/maps/pacman");
     mapa->Load("mapa_pacman.tmx");
@@ -52,11 +62,13 @@ void PlayState::init()
     player.setScale(0.7,0.7);
     player.play();
 
-    //initPoints();
     initPointsFixed();
+    initGhosts();
+    initVidas();
 
     dirx = 0;
     diry = 0;
+    modoPowerup = false;
 
     im = cgf::InputManager::instance();
 
@@ -67,9 +79,6 @@ void PlayState::init()
     im->addKeyInput("quit", sf::Keyboard::Escape);
     im->addKeyInput("stats", sf::Keyboard::S);
     im->addKeyInput("pause", sf::Keyboard::P);
-
-    im->addKeyInput("zoomin", sf::Keyboard::Z);
-    im->addKeyInput("zoomout", sf::Keyboard::X);
 
     cout << "PlayState: Init" << endl;
 }
@@ -165,6 +174,7 @@ void PlayState::update(cgf::Game* game)
     screen = game->getScreen();
     checkCollision(1, game, &player);
     checkCollisionPoint(game);
+    checkCollisionGhost(game);
     centerMapOnPlayer();
 }
 
@@ -175,6 +185,11 @@ void PlayState::draw(cgf::Game* game)
     screen->draw(player);
     for(cgf::Sprite ponto : pointsVector)
         screen->draw(ponto);
+    for(cgf::Sprite ghost : ghostsVector)
+        screen->draw(ghost);
+    for(cgf::Sprite vida : vidasVector)
+        screen->draw(vida);
+    screen->draw(textVida);
     screen->draw(text);
 }
 
@@ -225,26 +240,54 @@ void PlayState::centerMapOnPlayer()
         panY = mapsize.y - viewsize.y;
 
     sf::Vector2f center(panX,panY);
-    text.setPosition(panX + 150, panY-(view.getSize().y/2));
+    text.setPosition(panX + 185, panY-(view.getSize().y/2));
+    float posX = panX - (view.getSize().x/2);
+    posX += 10;
+    textVida.setPosition(posX, panY-(view.getSize().y/2));
+    posX += 125;
+    for(int i = 0; i < vidasVector.size(); i++){
+        vidasVector[i].setPosition(posX, panY-(view.getSize().y/2));
+        posX += 32;
+    }
     view.setCenter(center);
     screen->setView(view);
 }
 
 void PlayState::checkCollisionPoint(cgf::Game* game){
     if(pointsVector.size() == 0)
-        game->changeState(EndState::instance());
+        game->changeState(EndState::instance(true));
 
     int i;
     bool colisao = false;
     for(i = 0; i < pointsVector.size(); i++){
         if(pointsVector[i].bboxCollision(player)){
             colisao = true;
-            addPoint();
+            addPoint(1);
             break;
         }
     }
     if(pointsVector.size() > 0 && colisao)
         pointsVector.erase(pointsVector.begin() + i);
+}
+
+void PlayState::checkCollisionGhost(cgf::Game* game){
+    int i;
+    bool colisao = false;
+    for(i = 0; i < ghostsVector.size(); i++){
+        if(ghostsVector[i].bboxCollision(player)){
+            colisao = true;
+            if(modoPowerup){
+                addPoint(25);
+            } else{
+                vidasVector.erase(vidasVector.end());
+                if(vidasVector.size() == 0)
+                   game->changeState(EndState::instance(false));
+            }
+            break;
+        }
+    }
+    if(ghostsVector.size() > 0 && colisao && modoPowerup)
+        ghostsVector.erase(ghostsVector.begin() + i);
 }
 
 bool PlayState::checkCollision(uint8_t layer, cgf::Game* game, cgf::Sprite* obj)
@@ -420,10 +463,13 @@ bool PlayState::checkCollision(uint8_t layer, cgf::Game* game, cgf::Sprite* obj)
     return bump;
 }
 
-void PlayState::addPoint(){
-    ostringstream stringStream;
-    stringStream << "Pontos: " << ++pontos;
-    text.setString(stringStream.str());
+void PlayState::addPoint(int qtd){
+    std::stringstream stringStream;
+    pontos += qtd;
+    string texto = "Pontos: ";
+    stringStream << std::setw(4) << std::setfill('0') << pontos;
+    texto = texto.append(stringStream.str());
+    text.setString(texto);
 }
 
 void PlayState::initPointsFixed(){
@@ -441,6 +487,27 @@ void PlayState::initPointsFixed(){
                 pointsVector.push_back(ponto);
             }
         }
+    }
+}
+
+void PlayState::initGhosts(){
+    int x = 448;
+    for(int i = 0; i < 5; i++){
+        cgf::Sprite ghost = cgf::Sprite();
+        ghost.load("data/img/pacman/inimigos/ghost.png");
+        ghost.setPosition(x, 512);
+        x += 32;
+        ghostsVector.push_back(ghost);
+    }
+}
+
+void PlayState::initVidas(){
+    vidas = 3;
+    for(int i = 0 ; i < vidas; i++){
+        cgf::Sprite vida = cgf::Sprite();
+        vida.load("data/img/pacman/sprites/32x32/pac2.png");
+        vida.setScale(0.7, 0.7);
+        vidasVector.push_back(vida);
     }
 }
 

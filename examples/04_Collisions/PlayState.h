@@ -16,6 +16,7 @@
 #include "InputManager.h"
 #include <tmx/MapLoader.h>
 #include <string>
+#include "Physics.h"
 
 class PlayState : public cgf::GameState
 {
@@ -54,6 +55,8 @@ class PlayState : public cgf::GameState
     int pontos;
 
     cgf::Sprite player;
+    bool modoPowerup;
+    int vidas;
 
     sf::RenderWindow* screen;
     cgf::InputManager* im;
@@ -62,17 +65,23 @@ class PlayState : public cgf::GameState
 
     sf::Font font;
     sf::Text text;
+    sf::Text textVida;
 
     std::vector<cgf::Sprite> pointsVector;
+    std::vector<cgf::Sprite> ghostsVector;
+    std::vector<cgf::Sprite> vidasVector;
 
     void centerMapOnPlayer();
     bool checkCollision(uint8_t layer, cgf::Game* game, cgf::Sprite* obj);
     sf::Uint16 getCellFromMap(uint8_t layernum, float x, float y);
 
-    void addPoint();
+    void addPoint(int qtd);
     void checkCollisionPoint(cgf::Game* game);
+    void checkCollisionGhost(cgf::Game* game);
     void initPoints();
     void initPointsFixed();
+    void initGhosts();
+    void initVidas();
 };
 
 #endif
