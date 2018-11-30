@@ -2310,7 +2310,7 @@
 	<SFML/System/Time.hpp>
 	<SFML/System/Clock.hpp>
 
-1542512025 c:\users\leona\desktop\t1_ent_digital\examples\04_collisions\playstate.h
+1543556225 c:\users\leona\desktop\t1_ent_digital\examples\04_collisions\playstate.h
 	"GameState.h"
 	"Sprite.h"
 	"InputManager.h"
@@ -2381,7 +2381,7 @@
 1522114114 c:\users\leona\desktop\t1_ent_digital\lib\cgf\include\debug.h
 	<iostream>
 
-1542511335 source:c:\users\leona\desktop\t1_ent_digital\examples\04_collisions\playstate.cpp
+1543557037 source:c:\users\leona\desktop\t1_ent_digital\examples\04_collisions\playstate.cpp
 	<iostream>
 	<cmath>
 	"Game.h"
@@ -2392,6 +2392,7 @@
 	<time.h>
 	<sstream>
 	<iomanip>
+	"VectorUtils.h"
 
 1542511961 source:c:\users\leona\desktop\t1_ent_digital\examples\04_collisions\endstate.cpp
 	<iostream>
@@ -2599,4 +2600,9 @@
 1522114114 c:\users\leona\desktop\t1_ent_digital\lib\cgf\include\eedebugdraw3.h
 	<Box2D/Box2D.h>
 	<SFML/Graphics.hpp>
+
+1522114114 c:\users\leona\desktop\t1_ent_digital\lib\cgf\include\vectorutils.h
+	<SFML/System/Vector2.hpp>
+	<SFML/System/Vector3.hpp>
+	<cassert>
 

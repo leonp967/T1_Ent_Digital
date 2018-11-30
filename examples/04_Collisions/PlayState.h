@@ -18,6 +18,17 @@
 #include <string>
 #include "Physics.h"
 
+struct Kinematic
+{
+    cgf::Sprite* sprite;
+    sf::Vector3f pos;
+    sf::Vector3f vel;
+    sf::Vector3f heading;
+    float maxForce;
+    float maxSpeed;
+    float maxTurnRate;
+};
+
 class PlayState : public cgf::GameState
 {
     public:
@@ -31,6 +42,7 @@ class PlayState : public cgf::GameState
     void handleEvents(cgf::Game* game);
     void update(cgf::Game* game);
     void draw(cgf::Game* game);
+    void setup(cgf::Game* game);
 
     // Implement Singleton Pattern
     static PlayState* instance()
@@ -54,9 +66,26 @@ class PlayState : public cgf::GameState
     int dirx, diry;
     int pontos;
 
-    cgf::Sprite player;
+    float speed;
+    cgf::Sprite player, ghost1, ghost2, ghost3;
+    Kinematic playerK, ghostK1, ghostK2, ghostK3;
     bool modoPowerup;
     int vidas;
+    float tempo;
+    bool firstTime;
+
+    sf::SoundBuffer eatGhostSoundBuffer;
+    sf::Sound eatGhostSound;
+    sf::SoundBuffer chompSoundBuffer;
+    sf::Sound chompSound;
+    sf::SoundBuffer eatPowerupSoundBuffer;
+    sf::Sound eatPowerupSound;
+    sf::SoundBuffer deathSoundBuffer;
+    sf::Sound deathSound;
+    sf::SoundBuffer beginningSoundBuffer;
+    sf::Sound beginningSound;
+    sf::Music musicPowerup;
+    sf::Music musicChomp;
 
     sf::RenderWindow* screen;
     cgf::InputManager* im;
@@ -68,20 +97,33 @@ class PlayState : public cgf::GameState
     sf::Text textVida;
 
     std::vector<cgf::Sprite> pointsVector;
-    std::vector<cgf::Sprite> ghostsVector;
+    std::vector<cgf::Sprite> powerupsVector;
     std::vector<cgf::Sprite> vidasVector;
 
+    enum {
+         CHASE_BEHAVIOR=0, ARRIVE_BEHAVIOR, PURSUIT_BEHAVIOR, FLEE_BEHAVIOR, EVADE_BEHAVIOR
+    };
+
+    int steerMode;
+    sf::Vector3f chase(Kinematic& vehicle, sf::Vector3f& target); // ir diretamente ao jogador
+    sf::Vector3f arrive(Kinematic& vehicle, sf::Vector3f& target, float decel=0.2); // ir diretamente ao jogador
+    sf::Vector3f pursuit(Kinematic& vehicle, Kinematic& target); // perseguir o jogador, prevendo a posição futura
+	sf::Vector3f flee(Kinematic& vehicle, sf::Vector3f& target, float panicDistance=100);  // fugir do jogador
+    sf::Vector3f evade(Kinematic& vehicle, Kinematic& target);
+
     void centerMapOnPlayer();
-    bool checkCollision(uint8_t layer, cgf::Game* game, cgf::Sprite* obj);
+    bool checkCollision(uint8_t layer, cgf::Game* game, Kinematic& obj);
     sf::Uint16 getCellFromMap(uint8_t layernum, float x, float y);
 
     void addPoint(int qtd);
     void checkCollisionPoint(cgf::Game* game);
     void checkCollisionGhost(cgf::Game* game);
+    void checkCollisionPowerup(cgf::Game* game);
     void initPoints();
     void initPointsFixed();
     void initGhosts();
     void initVidas();
+    void applyBehaviors(Kinematic& enemyK);
 };
 
 #endif

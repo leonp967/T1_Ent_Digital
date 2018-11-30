@@ -18,6 +18,7 @@
 #include <time.h>
 #include <sstream>
 #include <iomanip>
+#include "VectorUtils.h"
 
 PlayState PlayState::m_PlayState;
 
@@ -25,6 +26,11 @@ using namespace std;
 
 void PlayState::init()
 {
+    beginningSoundBuffer.loadFromFile("data/audio/pacman/pacman_beginning.wav");
+    beginningSound.setBuffer(beginningSoundBuffer);
+    beginningSound.setAttenuation(0);
+    beginningSound.play();
+
     if (!font.loadFromFile("data/fonts/emulogic.ttf")) {
         cout << "Cannot load emulogic.ttf font!" << endl;
         exit(1);
@@ -58,17 +64,29 @@ void PlayState::init()
     player.setPosition(32,64);
     player.loadAnimation("data/img/pacman/pacman_anim.xml");
     player.setAnimation(walkStates[currentDir]);
-    player.setAnimRate(15);
+    player.setAnimRate(30);
     player.setScale(0.7,0.7);
     player.play();
 
+    playerK.pos.x = 32;
+    playerK.pos.y = 64;
+    playerK.vel.x = playerK.vel.y = 0;
+    playerK.sprite = &player;
+    speed = 190;
+
+    firstTime = true;
+
     initPointsFixed();
     initGhosts();
+
+    steerMode = PURSUIT_BEHAVIOR;
+
     initVidas();
 
     dirx = 0;
     diry = 0;
     modoPowerup = false;
+    tempo = 0;
 
     im = cgf::InputManager::instance();
 
@@ -81,6 +99,29 @@ void PlayState::init()
     im->addKeyInput("pause", sf::Keyboard::P);
 
     cout << "PlayState: Init" << endl;
+}
+
+void PlayState::setup(cgf::Game* game)
+{
+    eatGhostSoundBuffer.loadFromFile("data/audio/pacman/pacman_eatghost.wav");
+    eatGhostSound.setBuffer(eatGhostSoundBuffer);
+    eatGhostSound.setAttenuation(0);
+
+    eatPowerupSoundBuffer.loadFromFile("data/audio/pacman/pacman_eatfruit.wav");
+    eatPowerupSound.setBuffer(eatPowerupSoundBuffer);
+    eatPowerupSound.setAttenuation(0);
+
+    deathSoundBuffer.loadFromFile("data/audio/pacman/pacman_death.wav");
+    deathSound.setBuffer(deathSoundBuffer);
+    deathSound.setAttenuation(0);
+
+    chompSoundBuffer.loadFromFile("data/audio/pacman/eating.wav");
+    chompSound.setBuffer(chompSoundBuffer);
+    chompSound.setAttenuation(0);
+
+    musicPowerup.openFromFile("data/audio/pacman/pacman_intermission.wav");
+    musicPowerup.setVolume(30);
+    musicPowerup.setLoop(true);
 }
 
 void PlayState::cleanup()
@@ -102,6 +143,10 @@ void PlayState::resume()
 
 void PlayState::handleEvents(cgf::Game* game)
 {
+    if(firstTime) {
+        setup(game);
+        firstTime = false;
+    }
     screen = game->getScreen();
     sf::View view = screen->getView();
     sf::Event event;
@@ -165,17 +210,191 @@ void PlayState::handleEvents(cgf::Game* game)
         player.play();
     }
 
-    player.setXspeed(150*dirx);
-    player.setYspeed(150*diry);
+    playerK.vel.x = dirx*speed;
+    playerK.vel.y = diry*speed;
+}
+
+// Steering Behavior: chase target
+sf::Vector3f PlayState::chase(Kinematic& vehicle, sf::Vector3f& target)
+{
+    sf::Vector3f desiredVel = target - vehicle.pos;
+    vecutils::normalize(desiredVel);
+    desiredVel *= vehicle.maxSpeed;
+    return desiredVel - vehicle.vel;
+}
+
+// Steering Behavior: arrive at target
+sf::Vector3f PlayState::arrive(Kinematic& vehicle, sf::Vector3f& target, float decel)
+{
+    sf::Vector3f toTarget = target - vehicle.pos;
+    float d = vecutils::length(toTarget);
+    if(d > 0)
+    {
+        // Calculate the speed required to reach the target given the desired
+        // deceleration
+        float speed = d / decel;
+
+        // Make sure the velocity does not exceed the max
+        speed = min(speed, vehicle.maxSpeed);
+
+        // From here proceed just like chase, except we don't need to normalize
+        // the toTarget vector because we have already gone to the trouble
+        // of calculating its length: d
+        sf::Vector3f desiredVel = toTarget * speed / d;
+        return desiredVel - vehicle.vel;
+    }
+    return sf::Vector3f(0,0,0);
+}
+
+// Steering Behavior: flee from target
+sf::Vector3f PlayState::flee(Kinematic& vehicle, sf::Vector3f& target, float panicDistance)
+{
+    float panicDistance2 = panicDistance * panicDistance;
+    if(vecutils::distanceSquared(vehicle.pos, target) > panicDistance2)
+        return sf::Vector3f(0,0,0);
+    sf::Vector3f desiredVel = vehicle.pos - target;
+    vecutils::normalize(desiredVel);
+    desiredVel *= vehicle.maxSpeed;
+    return desiredVel - vehicle.vel;
+}
+
+// Steering Behavior: pursuit target
+sf::Vector3f PlayState::pursuit(Kinematic& vehicle, Kinematic& target)
+{
+    sf::Vector3f toEvader = target.pos - vehicle.pos;
+    double relativeHeading = vecutils::dotProduct(vehicle.heading, target.heading);
+    // If target is facing us, go chase it
+    if(vecutils::dotProduct(toEvader, vehicle.heading) > 0 && relativeHeading < -0.95) // acos(0.95) = 18 graus
+        return arrive(vehicle, target.pos);
+
+    // Not facing, so let's predict where the target will be
+
+    // The look-ahead time is proportional to the distance between the target
+    // and the enemy, and is inversely proportional to the sum of the
+    // agents' velocities
+
+    float vel = vecutils::length(target.vel);
+    float lookAheadTime = vecutils::length(toEvader) / (vehicle.maxSpeed + vel);
+
+    // Now chase to the predicted future position of the target
+
+    sf::Vector3f predicted(target.pos + target.vel * lookAheadTime);
+    return arrive(vehicle, predicted, 0.1);
+}
+
+// Steering Behavior: evade target
+sf::Vector3f PlayState::evade(Kinematic& vehicle, Kinematic& target)
+{
+    sf::Vector3f toPursuer = target.pos - vehicle.pos;
+
+    // The look-ahead time is proportional to the distance between the pursuer
+    // and the vehicle, and is inversely proportional to the sum of the
+    // agents' velocities
+
+    float vel = vecutils::length(target.vel);
+    float lookAheadTime = vecutils::length(toPursuer) / (vehicle.maxSpeed + vel);
+
+    // Now chase to the predicted future position of the target
+
+    sf::Vector3f predicted(target.pos + target.vel * lookAheadTime);
+    return flee(vehicle, predicted);
 }
 
 void PlayState::update(cgf::Game* game)
 {
     screen = game->getScreen();
-    checkCollision(1, game, &player);
+    if(modoPowerup){
+        tempo += game->getUpdateInterval();
+        if(tempo >= 15000){
+            musicPowerup.stop();
+            //musicChomp.play();
+            modoPowerup = false;
+            tempo = 0;
+            steerMode = PURSUIT_BEHAVIOR;
+            ghost1.load("data/img/pacman/inimigos/ghost.png");
+            ghost2.load("data/img/pacman/inimigos/ghost.png");
+            ghost3.load("data/img/pacman/inimigos/ghost.png");
+            ghost1.setVisible(true);
+            ghost2.setVisible(true);
+            ghost3.setVisible(true);
+        }
+    }
+    //if(beginningSound.getStatus() == sf::Sound::Stopped && musicChomp.getStatus() == sf::Sound::Stopped && !modoPowerup){
+   //     musicChomp.play();
+    //}
+
+    checkCollision(1, game, playerK);
+    centerMapOnPlayer();
+
+    if(ghost1.isVisible()){
+        applyBehaviors(ghostK1);
+        checkCollision(1, game, ghostK1);
+    }
+    if(ghost2.isVisible()){
+        applyBehaviors(ghostK2);
+        checkCollision(1, game, ghostK2);
+    }
+    if(ghost3.isVisible()){
+        applyBehaviors(ghostK3);
+        checkCollision(1, game, ghostK3);
+    }
+
     checkCollisionPoint(game);
     checkCollisionGhost(game);
-    centerMapOnPlayer();
+    checkCollisionPowerup(game);
+}
+
+void PlayState::applyBehaviors(Kinematic& enemyK)
+{
+#define STEERING
+#ifdef STEERING
+    // Apply steering behavior(s)
+
+    //sf::Vector3f steeringForce = flee(enemyK, playerK,100);
+    //sf::Vector3f steeringForce = pursuit(enemyK, playerK);
+    sf::Vector3f steeringForce;
+    switch(steerMode) {
+        case CHASE_BEHAVIOR:
+            steeringForce = chase(enemyK, playerK.pos);
+            break;
+        case ARRIVE_BEHAVIOR:
+            steeringForce = arrive(enemyK, playerK.pos, 0.3); // 0.3 - rapido ... 1 - lento
+            break;
+        case PURSUIT_BEHAVIOR:
+            steeringForce = pursuit(enemyK, playerK);
+            break;
+        case FLEE_BEHAVIOR:
+            steeringForce = flee(enemyK, playerK.pos, 100);
+            break;
+        case EVADE_BEHAVIOR:
+            steeringForce = evade(enemyK, playerK);
+    }
+    sf::Vector3f accel = steeringForce/0.7f; // mass;
+
+    enemyK.vel += accel; // * deltaTime
+
+    // Can't exceed max speed
+    if(vecutils::lengthSquared(enemyK.vel) > enemyK.maxSpeed*enemyK.maxSpeed) {
+        vecutils::normalize(enemyK.vel);
+        enemyK.vel *= enemyK.maxSpeed;
+    }
+
+    // Only update heading if speed is above minimum threshold
+    if(vecutils::lengthSquared(enemyK.vel) > 0.00000001) {
+        enemyK.heading = enemyK.vel / vecutils::length(enemyK.vel);
+    }
+
+#else
+    // Basic chase
+    if(enemyK.pos.X < playerK.pos.X)
+        enemyK.vel.X = 2;
+    else if(enemyK.pos.X > playerK.pos.X)
+        enemyK.vel.X = -2;
+    if(enemyK.pos.Y < playerK.pos.Y)
+        enemyK.vel.Y = 2;
+    else if(enemyK.pos.Y > playerK.pos.Y)
+        enemyK.vel.Y = -2;
+#endif
 }
 
 void PlayState::draw(cgf::Game* game)
@@ -185,10 +404,18 @@ void PlayState::draw(cgf::Game* game)
     screen->draw(player);
     for(cgf::Sprite ponto : pointsVector)
         screen->draw(ponto);
-    for(cgf::Sprite ghost : ghostsVector)
-        screen->draw(ghost);
+
+    ghost1.setPosition(ghostK1.pos.x, ghostK1.pos.y);
+    screen->draw(ghost1);
+    ghost2.setPosition(ghostK2.pos.x, ghostK2.pos.y);
+    screen->draw(ghost2);
+    ghost3.setPosition(ghostK3.pos.x, ghostK3.pos.y);
+    screen->draw(ghost3);
+
     for(cgf::Sprite vida : vidasVector)
         screen->draw(vida);
+    for(cgf::Sprite powerup : powerupsVector)
+        screen->draw(powerup);
     screen->draw(textVida);
     screen->draw(text);
 }
@@ -205,12 +432,10 @@ void PlayState::initPoints(){
         ponto.load("data/img/pacman/sprites/ponto.png");
         int posX = (baseX) + ((rand() % limiteX + 2)*30);
         int posY = (baseY) + ((rand() % limiteY + 2)*30);
-        printf("antesWhile\n");
         while(getCellFromMap(1, posX, posY) || getCellFromMap(2, posX, posY)){
             posX = (baseX) + ((rand() % limiteX + 2)*30);
             posY = (baseY) + ((rand() % limiteY + 2)*30);
         }
-        printf("depoisWhile\n");
         ponto.setPosition(posX, posY);
         pointsVector.push_back(ponto);
     }
@@ -253,6 +478,29 @@ void PlayState::centerMapOnPlayer()
     screen->setView(view);
 }
 
+void PlayState::checkCollisionPowerup(cgf::Game* game){
+    int i;
+    bool colisao = false;
+    for(i = 0; i < powerupsVector.size(); i++){
+        if(powerupsVector[i].bboxCollision(player)){
+            eatPowerupSound.play();
+            //musicChomp.stop();
+            musicPowerup.play();
+            tempo = 0;
+            colisao = true;
+            modoPowerup = true;
+            addPoint(10);
+            steerMode = FLEE_BEHAVIOR;
+            ghost1.load("data/img/pacman/inimigos/ghost_fraco.png");
+            ghost2.load("data/img/pacman/inimigos/ghost_fraco.png");
+            ghost3.load("data/img/pacman/inimigos/ghost_fraco.png");
+            break;
+        }
+    }
+    if(powerupsVector.size() > 0 && colisao)
+        powerupsVector.erase(powerupsVector.begin() + i);
+}
+
 void PlayState::checkCollisionPoint(cgf::Game* game){
     if(pointsVector.size() == 0)
         game->changeState(EndState::instance(true));
@@ -261,6 +509,8 @@ void PlayState::checkCollisionPoint(cgf::Game* game){
     bool colisao = false;
     for(i = 0; i < pointsVector.size(); i++){
         if(pointsVector[i].bboxCollision(player)){
+            if(chompSound.getStatus() == sf::Sound::Stopped)
+                chompSound.play();
             colisao = true;
             addPoint(1);
             break;
@@ -271,26 +521,55 @@ void PlayState::checkCollisionPoint(cgf::Game* game){
 }
 
 void PlayState::checkCollisionGhost(cgf::Game* game){
-    int i;
     bool colisao = false;
-    for(i = 0; i < ghostsVector.size(); i++){
-        if(ghostsVector[i].bboxCollision(player)){
-            colisao = true;
-            if(modoPowerup){
-                addPoint(25);
-            } else{
-                vidasVector.erase(vidasVector.end());
-                if(vidasVector.size() == 0)
-                   game->changeState(EndState::instance(false));
-            }
-            break;
+
+    if(ghost1.isVisible() && ghost1.bboxCollision(player)){
+        colisao = true;
+        if(modoPowerup){
+            addPoint(25);
+            eatGhostSound.play();
+            ghost1.setVisible(false);
+        }
+    } else if(ghost2.isVisible() && ghost2.bboxCollision(player)){
+        colisao = true;
+        if(modoPowerup){
+            addPoint(25);
+            eatGhostSound.play();
+            ghost2.setVisible(false);
+        }
+    } else if(ghost3.isVisible() && ghost3.bboxCollision(player)){
+        colisao = true;
+        if(modoPowerup){
+            addPoint(25);
+            eatGhostSound.play();
+            ghost3.setVisible(false);
         }
     }
-    if(ghostsVector.size() > 0 && colisao && modoPowerup)
-        ghostsVector.erase(ghostsVector.begin() + i);
+
+    if(colisao && !modoPowerup){
+        vidasVector.erase(vidasVector.end());
+        if(vidasVector.size() == 0)
+            game->changeState(EndState::instance(false));
+        else {
+            deathSound.play();
+            if((abs(player.getPosition().x - 32) < 160) &&
+            (abs(player.getPosition().y - 64) < 160)){
+                player.setPosition(1000, 256);
+                playerK.pos.x = 1000;
+                playerK.pos.y = 256;
+            } else{
+                player.setPosition(32, 64);
+                playerK.pos.x = 32;
+                playerK.pos.y = 64;
+            }
+        }
+    }
+
+//    if(ghostsVector.size() > 0 && colisao && modoPowerup)
+//        ghostsVector.erase(ghostsVector.begin() + i);
 }
 
-bool PlayState::checkCollision(uint8_t layer, cgf::Game* game, cgf::Sprite* obj)
+bool PlayState::checkCollision(uint8_t layer, cgf::Game* game, Kinematic& obj)
 {
     int i, x1, x2, y1, y2;
     bool bump = false;
@@ -306,16 +585,16 @@ bool PlayState::checkCollision(uint8_t layer, cgf::Game* game, cgf::Sprite* obj)
     mapsize.y--;
 
     // Get the height and width of the object (in this case, 100% of a tile)
-    sf::Vector2u objsize = obj->getSize();
-    objsize.x *= obj->getScale().x;
-    objsize.y *= obj->getScale().y;
+    sf::Vector2u objsize = obj.sprite->getSize();
+    objsize.x *= obj.sprite->getScale().x;
+    objsize.y *= obj.sprite->getScale().y;
 
-    float px = obj->getPosition().x;
-    float py = obj->getPosition().y;
+    float px = obj.pos.x; //->getPosition().x;
+    float py = obj.pos.y; //->getPosition().y;
 
     double deltaTime = game->getUpdateInterval();
 
-    sf::Vector2f offset(obj->getXspeed()/1000 * deltaTime, obj->getYspeed()/1000 * deltaTime);
+    sf::Vector2f offset(obj.vel.x/1000 * deltaTime, obj.vel.y/1000 * deltaTime);
 
     float vx = offset.x;
     float vy = offset.y;
@@ -443,22 +722,22 @@ bool PlayState::checkCollision(uint8_t layer, cgf::Game* game, cgf::Sprite* obj)
 
     // Now apply the movement and animation
 
-    obj->setPosition(px+vx,py+vy);
-    px = obj->getPosition().x;
-    py = obj->getPosition().y;
-
-    obj->update(deltaTime, false); // only update animation
+    obj.pos.x = px+vx;
+    obj.pos.y = py+vy;
 
     // Check collision with edges of map
-    if (px < 0)
-        obj->setPosition(px,py);
-    else if (px + objsize.x >= mapsize.x * tilesize.x)
-        obj->setPosition(mapsize.x*tilesize.x - objsize.x - 1,py);
+    if (obj.pos.x < 0)
+        obj.pos.x = 0;
+    else if (obj.pos.x + objsize.x >= mapsize.x * tilesize.x)
+        obj.pos.x = mapsize.x*tilesize.x - objsize.x - 1;
 
-    if(py < 0)
-       obj->setPosition(px,0);
-    else if(py + objsize.y >= mapsize.y * tilesize.y)
-        obj->setPosition(px, mapsize.y*tilesize.y - objsize.y - 1);
+    if(obj.pos.y < 0)
+        obj.pos.y = 0;
+    else if(obj.pos.y + objsize.y >= mapsize.y * tilesize.y)
+        obj.pos.y = mapsize.y*tilesize.y - objsize.y - 1;
+
+    obj.sprite->setPosition(obj.pos.x, obj.pos.y);
+    obj.sprite->update(deltaTime, false); // only update animation
 
     return bump;
 }
@@ -476,29 +755,65 @@ void PlayState::initPointsFixed(){
     tmx::MapLayer layer = mapa->GetLayers()[0];
     int offsetX = mapa->GetMapTileSize().x / 2;
     int offsetY = mapa->GetMapTileSize().y / 2;
+    srand(time(NULL));
+    int qtdPowerup = rand() % 15 + 1;
+    int linha = rand() % 33;
+    linha = linha * mapa->GetMapTileSize().y;
     for(int x = 0; x < mapa->GetMapSize().x; x+=mapa->GetMapTileSize().x){
         for(int y = 0; y < mapa->GetMapSize().y; y+=mapa->GetMapTileSize().y){
             float posX = x + offsetX;
             float posY = y + offsetY;
             if(!getCellFromMap(1, posX, posY) && !getCellFromMap(2, posX, posY)){
-                cgf::Sprite ponto = cgf::Sprite();
-                ponto.load("data/img/pacman/sprites/ponto.png");
-                ponto.setPosition(x, y);
-                pointsVector.push_back(ponto);
+                if(y == linha && qtdPowerup > 0){
+                    cgf::Sprite poder = cgf::Sprite();
+                    poder.load("data/img/pacman/sprites/poder.png");
+                    poder.setPosition(x, y);
+                    powerupsVector.push_back(poder);
+                    qtdPowerup--;
+                    cout << "poder" << endl;
+                } else {
+                    cgf::Sprite ponto = cgf::Sprite();
+                    ponto.load("data/img/pacman/sprites/ponto.png");
+                    ponto.setPosition(x, y);
+                    pointsVector.push_back(ponto);
+                }
             }
         }
+        linha = rand() % 33;
+        linha = linha * mapa->GetMapTileSize().y;
     }
 }
 
 void PlayState::initGhosts(){
-    int x = 448;
-    for(int i = 0; i < 5; i++){
-        cgf::Sprite ghost = cgf::Sprite();
-        ghost.load("data/img/pacman/inimigos/ghost.png");
-        ghost.setPosition(x, 512);
-        x += 32;
-        ghostsVector.push_back(ghost);
-    }
+    ghost1 = cgf::Sprite();
+    ghost1.load("data/img/pacman/inimigos/ghost.png");
+    ghost1.setPosition(448, 512);
+    ghost1.setScale(sf::Vector2f(2,2));
+
+    ghostK1.sprite = &ghost1;
+    ghostK1.pos.x = 448;
+    ghostK1.pos.y = 512;
+    ghostK1.maxSpeed = 150;
+
+    ghost2 = cgf::Sprite();
+    ghost2.load("data/img/pacman/inimigos/ghost.png");
+    ghost2.setPosition(480, 512);
+    ghost2.setScale(sf::Vector2f(2,2));
+
+    ghostK2.sprite = &ghost2;
+    ghostK2.pos.x = 480;
+    ghostK2.pos.y = 512;
+    ghostK2.maxSpeed = 180;
+
+    ghost3 = cgf::Sprite();
+    ghost3.load("data/img/pacman/inimigos/ghost.png");
+    ghost3.setPosition(492, 512);
+    ghost3.setScale(sf::Vector2f(2,2));
+
+    ghostK3.sprite = &ghost3;
+    ghostK3.pos.x = 492;
+    ghostK3.pos.y = 512;
+    ghostK3.maxSpeed = 130;
 }
 
 void PlayState::initVidas(){
